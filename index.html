@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/buttons.css">
-    <link rel="stylesheet" href="css/editor.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./css/buttons.css">
+    <link rel="stylesheet" href="./css/editor.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="icon" href="./imgs/fav.ico" class="favicon">
     <title>Meme Generator</title>
 </head>
@@ -72,7 +72,7 @@
                         <input onchange="onChangeFillColor(this)" type="color" id="fill-color-input" name="fill-color-input" hidden>
                     </div>
                     <div class="download-tools">
-                        <!-- Create Download tools such as save/share and upload -->
+                        <!-- Download tools such as save/share and upload -->
                         <form action="" method="POST" onsubmit="uploadImg(this, event)" enctype="multipart/form-data" onload="uploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />
                             <button type="submit" class="btn-share btn"><img src="./imgs/share.svg"  class="fbshare" alt="">Share Meme</button>

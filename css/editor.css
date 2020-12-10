@@ -1,0 +1,206 @@
+/* editor-Layout */
+
+.meme-editor-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    max-width: 1200px;
+    max-height: 700px;
+    margin: auto;
+}
+
+.meme-editor-container>* {
+    display: flex;
+}
+
+
+/* canvas */
+
+.meme-editor-container .canvas-container {
+    flex-grow: 1;
+    height: 90%;
+    max-height: 500px;
+    max-width: 50%;
+    margin: auto 20px;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+}
+
+
+/* tools-container */
+
+.meme-editor-container .tools-container {
+    flex-grow: 1;
+    height: 90%;
+    max-height: 600px;
+    max-width: 600px;
+    margin: auto 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+    background-image: linear-gradient(lightblue, white);
+    position: relative;
+    border: 1px solid gray;
+}
+
+.meme-editor-container .tools-container .btn {
+    height: 55px;
+    width: 55px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tools-container input[name="txt-input"] {
+    height: 55px;
+    border: 1px solid black;
+    font-size: 1.5rem;
+}
+
+.meme-editor-container .tools-container .line-tools {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tools-container .txt-tools {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
+}
+
+.tools-container .txt-tools>* {
+    justify-self: center;
+    align-self: center;
+    margin: 10px;
+}
+
+.tools-container .txt-tools .btn-select {
+    height: 55px;
+    grid-column: 1/span 3;
+    justify-self: stretch;
+    background-color: #ffffff;
+    padding: 10px;
+    cursor: pointer;
+    font-family: ptmono;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+}
+
+.meme-editor-container .tools-container .download-tools form {
+    display: flex;
+}
+
+.meme-editor-container .tools-container .download-tools {
+    display: flex;
+    flex-direction: column;
+}
+
+.download-tools form>* {
+    display: inline-block;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.tools-container .download-tools form .btn {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.tools-container .download-tools .btn-save {
+    color: rgb(88, 88, 88);
+    font-size: 1.3rem;
+    background-color: #ebeef3;
+    width: 100%;
+    margin: 10px 0 5px 0;
+}
+
+img.fbshare {
+    width: 30px;
+    height: 25px;
+}
+
+.tools-container .download-tools form .btn img {
+    margin-right: 10px;
+}
+
+@media (max-width: 950px) {
+    .page-container {
+        flex-direction: column;
+    }
+    .meme-editor-container {
+        flex-direction: column;
+        max-height: fit-content;
+    }
+    .meme-editor-container .canvas-container {
+        margin: 10px auto;
+        max-width: fit-content;
+        max-height: 250px;
+    }
+    /* tools-container */
+    .meme-editor-container .tools-container {
+        align-self: stretch;
+        max-height: 350px;
+        max-width: 90%;
+        margin: 5px auto;
+    }
+    .meme-editor-container .tools-container .line-tools .btn,
+    .meme-editor-container .tools-container .txt-tools .btn {
+        height: 40px;
+        width: 40px;
+        font-size: 0.7rem;
+    }
+    .meme-editor-container .tools-container .download-tools .btn {
+        height: 40px;
+        font-size: 0.8rem;
+    }
+    .meme-editor-container .tools-container .btn img {
+        height: 15px;
+        width: 15px;
+    }
+    .meme-editor-container .tools-container .btn.btn-change-line img {
+        margin: 0;
+    }
+    .tools-container input[name="txt-input"] {
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    .tools-container .txt-tools {
+        height: 40%;
+    }
+    .tools-container .txt-tools .btn {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    .tools-container .txt-tools .btn-select {
+        height: 40px;
+        font-size: 0.7rem;
+    }
+    .tools-container .download-tools form .btn {
+        font-size: 0.8rem;
+    }
+    .tools-container .download-tools form .btn img {
+        margin-right: 5px;
+    }
+    .tools-container .download-tools .btn-save {
+        margin: 5px 0 5px 0;
+    }
+}
+
+@media (max-width: 750px) {
+    canvas {
+        display: block;
+        margin: auto;
+        width: 350px;
+        height: 350px;
+    }
+}

@@ -1,0 +1,34 @@
+.tools-container .line-tools .btn-up {
+    background-color: black;
+}
+
+.tools-container .line-tools .btn-down {
+    background-color: black;
+}
+
+.tools-container .line-tools .btn-change-line {
+    background-color: black;
+}
+
+.tools-container .line-tools .btn-add-line {
+    background-color: #ebeef3;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: black;
+}
+
+.tools-container .line-tools .btn-remove-line {
+    background-color: #ebeef3;
+}
+
+.tools-container .txt-tools .btn {
+    background-color: #ffffff;
+}
+
+.tools-container .download-tools .btn-share {
+    background-color: #1e7cd3;
+}
+
+.tools-container .download-tools .btn-download {
+    background-color: #8f44bb;
+}

@@ -4,38 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="./imgs/fav.ico" class="favicon">
     <title>Meme Generator</title>
 </head>
 
 <body onload="onInit()">
-    <div class="general-container">
-        <nav class="">
-            <!--ToDo! Add onclick="" to back to homepage when pressed -->
-            <img src="" class="logo" alt="logo">
+    <div class="general-container content-size">
+
+        <nav>
+            <div class="logo-text">
+                <a onclick="changeContainers('gallery-container')"><img src="./imgs/logo.svg" alt="logo" class="logo" onclick="changeContainers('gallery-container')">MEME Master</a>
+            </div>
+            <ul nav>
+                <li class="go-to-gallery-container active">
+                    <a onclick="changeContainers('gallery-container')">The Gallery</a>
+                </li>
+                <li class="go-to-memes-container">
+                    <!-- Here goes saved memes -->
+                    <a onclick="changeContainers('memes-container')">My Saved Memes</a>
+                </li>
+                <li class="go-to-about-container">
+                    <a onclick="changeContainers('about-container')">About Us</a>
+                </li>
+            </ul>
+            <button class="btn btn-hamburger" onclick="toggleNav()">
+            <img src="./imgs/Hamburger.png" alt="">
+            <img class="hide" src="./imgs/close.png" alt="">
+        </button>
         </nav>
-        <div class="grid">
-            <div style="--aspect-ratio: 2/1;">2/1</div>
-            <div style="--aspect-ratio: 3/1;">3/1</div>
-            <div style="--aspect-ratio: 1/1;">1/1</div>
+
+        <div class="page-container gallery-container">
+            <div class="meme-editor-container hide">
+                <div class="canvas-container">
+                    <canvas id="my-canvas" height="450" width="450"></canvas>
+                </div>
+                <!-- Editor buttons per use -->
+                <div class="tools-container">
+                    <input onkeyup="onAddTxt()" name="txt-input" type="text" placeholder="Enter your text here!">
+                    <div class="line-tools">
+                        <button class="btn btn-up" onclick="onChangeLinePos(-2)" title="Line up"><img src="./imgs/up.svg" alt=""></button>
+                        <button class="btn btn-down" onclick="onChangeLinePos(2)" title="Line down"><img src="./imgs/down.svg" alt=""></button>
+                        <button class="btn btn-change-line" onclick="onChangeFocusedLine()" title="Select-line"><img src="./imgs/up.svg" alt=""><img src="./imgs/down.svg" alt=""></button>
+                        <button class="btn btn-add-line" title="New line" onclick="onAddLine()">New Line</button>
+                        <button class="btn btn-remove-line" title="Remove line" onclick="onRemoveLine()">REMOVE</button>
+                    </div>
+                    <div class="txt-tools">
+                        <button class="btn font-up" onclick="onChangeFontSize(2)" title="Increase font"><img src="./imgs/A+.png" alt=""></button>
+                        <button class="btn font-down" onclick="onChangeFontSize(-2)" title="Decrease font"><img src="./imgs/A-.png" alt=""></button>
+                        <button class="btn align-left" onclick="onChangeTxtAlign('end')" title="Align text left"><img src="./imgs/align-left.png" alt=""></button>
+                        <button class="btn align-center" onclick="onChangeTxtAlign('center')" title="Center text"><img src="./imgs/align-center.png" alt=""></button>
+                        <button class="btn align-right" onclick="onChangeTxtAlign('start')" title="Align text right"><img src="./imgs/align-right.svg" alt=""></button>
+                        <select class="btn-select" onchange="onChangeFontFamily(this)" id="select-font">
+                        <option value="Impact">Impact</option>
+                        <option value="monospace">Monospace</option>
+                        <option value="Garamond">Garamond</option>
+                        <option value="Ariel">Ariel</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="sans-serif">sans-serif</option>
+                        <option value="serif">serif</option>
+                    </select>
+                        <label class="btn btn-stroke-color" for="stroke-color-input"><img src="./imgs/s.png" alt="" title="Change text stroke"></label>
+                        <input onchange="onChangeStrokeColor(this)" type="color" id="stroke-color-input" name="stroke-color-input" hidden>
+                        <label class="btn btn-fill-color" for="fill-color-input"><img src="./imgs/color.png" alt="" title="Change text color"></label>
+                        <input onchange="onChangeFillColor(this)" type="color" id="fill-color-input" name="fill-color-input" hidden>
+                    </div>
+                    <div class="download-tools">
+                        <!-- Create Download tools such as save/share and upload -->
+                        <form action="" method="POST" onsubmit="uploadImg(this, event)" enctype="multipart/form-data" onload="uploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button type="submit" class="btn-share btn"><img src="./imgs/share.svg"  class="fbshare" alt="">Share Meme</button>
+                            <a href="#" class="btn-download btn" onclick="downloadCanvas(this)" download="my-img.jpg"><img src="./imgs/download.svg" alt=""> Download Meme</a>
+                        </form>
+                        <button class="btn btn-save">Save Meme</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Here the imgs will render -->
+            <div class="img-gallery">
+                <div class="img-container">
+                </div>
+            </div>
+        </div>
+        <!-- Saved meme container -->
+        <div class="page-container memes-container hide">
+            <div class="saved-memes-imgs">
+            </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="page-container about-container hide">
+            <h2>Who Am I?</h2>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias id inventore, consequatur quisquam nulla reprehenderit delectus impedit dignissimos, non cum molestias. Aspernatur veniam accusamus suscipit exercitationem dignissimos possimus minus velit
+            voluptatibus nulla nobis, explicabo molestiae repudiandae neque reprehenderit unde doloribus repellat expedita. Adipisci voluptates ad accusamus molestias exercitationem alias ullam eum fugit nulla minima debitis molestiae, assumenda officiis
+            dolor! Corporis consequatur odio, necessitatibus excepturi magni animi libero aliquid amet sed ipsum, inventore voluptatem. Repellat laudantium eum dicta, magni vero maxime alias dignissimos dolores quo? Voluptate nisi nesciunt pariatur, ut
+            aliquid magni velit cumque numquam. Corrupti dolorem dolor cum dicta quos, officiis sed assumenda veniam.
+            <img class="aboutuspic" src="./imgs/aboutimg.jpg" alt="about-us">
+        </div>
     </div>
 
+    <!-- <footer>
+        <a>All rights to the Meme Master!</a>
+    </footer> -->
 
     <script src="./js/utils.js"></script>
     <script src="./js/storage-service.js"></script>

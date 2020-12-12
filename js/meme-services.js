@@ -58,6 +58,7 @@ function getLines() {
 function changeFocusedLine(idx) {
     if (idx) gMeme.selectedLineIdx = idx;
     else gMeme.selectedLineIdx = (gMeme.selectedLineIdx < gMeme.lines.length - 1) ? gMeme.selectedLineIdx + 1 : 0
+
 }
 
 function addLine() {
@@ -77,6 +78,7 @@ function removeLine() {
     drawCanvas();
     // if (gMeme.lines.length > 0) gMeme.selectedLineIdx--;
     changeFocusedLine();
+
 }
 
 function getFocusedLine() {

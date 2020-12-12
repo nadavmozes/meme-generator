@@ -124,6 +124,10 @@ canvas {
     margin: 10px 0 5px 0;
 }
 
+.tools-container .download-tools .btn-save:focus::after {
+    content: "💾";
+}
+
 img.fbshare {
     width: 30px;
     height: 25px;

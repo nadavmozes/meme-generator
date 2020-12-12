@@ -13,13 +13,15 @@
 //         color: 'red'
 //     }]
 // }
+const MEMES_KEY = 'memesDB'
 var gImgs;
 var gMeme;
+var gSavedMemes;
 
 
 function initMemesServices() {
     createImgs();
-
+    setSavedMemes();
 }
 
 function changeLinePos(axis = 'y', num) {
@@ -65,13 +67,15 @@ function addLine() {
     changeFocusedLine();
     if (gMeme.selectedLineIdx < 2) {
         gMeme.lines[gMeme.selectedLineIdx].pos.y = gMeme.canvasSize - gMeme.lines[gMeme.selectedLineIdx].size / 2;
-        return
+        return;
     }
     gMeme.lines[gMeme.selectedLineIdx].pos.y = gMeme.canvasSize / 2;
 }
 
 function removeLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    drawCanvas();
+    // if (gMeme.lines.length > 0) gMeme.selectedLineIdx--;
     changeFocusedLine();
 }
 
@@ -83,6 +87,7 @@ function getFocusedLine() {
 
 function addTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
+    drawCanvas();
 }
 
 function getCurrImg() {
@@ -128,7 +133,7 @@ function getImgs() {
 
 function createImgs() {
     const imgs = [];
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 25; i++) {
         const img = _createImg(i + 1);
         imgs.push(img);
     }
@@ -142,4 +147,47 @@ function _createImg(id) {
         keywords: []
     }
     return img;
+}
+
+function setSavedMemes() {
+    var memes = getFromLocalStorage(MEMES_KEY);
+    if (!memes || memes.length === 0) {
+        memes = []
+    }
+    gSavedMemes = memes;
+}
+
+function saveMeme(memeImg) {
+    const memeIdx = getMemeIdxById(gMeme.id);
+    if (memeIdx >= 0) gSavedMemes.splice(memeIdx, 1);
+    gSavedMemes.push(gMeme);
+    gMeme.memeImg = memeImg;
+    saveInLocalStorage(MEMES_KEY, gSavedMemes);
+    setSavedMemes();
+}
+
+function getSavedMemes() {
+    return gSavedMemes;
+}
+
+function removeMeme(memeId) {
+    const memeIdx = getMemeIdxById(memeId);
+    if (memeIdx >= 0) {
+        if (confirm('are you sure?')) gSavedMemes.splice(memeIdx, 1);
+        saveInLocalStorage(MEMES_KEY, gSavedMemes);
+    }
+}
+
+function setMemeId(memeId) {
+    const memeIdx = getMemeIdxById(memeId);
+    if (memeIdx >= 0) {
+        gMeme = gSavedMemes[memeIdx]
+    }
+}
+
+function getMemeIdxById(memeId) {
+    const memeIdx = gSavedMemes.findIndex(function(meme) {
+        return (meme.id === memeId)
+    })
+    return memeIdx
 }

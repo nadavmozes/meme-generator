@@ -75,10 +75,10 @@
                         <!-- Download tools such as save/share and upload -->
                         <form action="" method="POST" onsubmit="uploadImg(this, event)" enctype="multipart/form-data" onload="uploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />
-                            <button type="submit" class="btn-share btn"><img src="./imgs/share.svg"  class="fbshare" alt="">Share Meme</button>
-                            <a href="#" class="btn-download btn" onclick="downloadCanvas(this)" download="my-img.jpg"><img src="./imgs/download.svg" alt=""> Download Meme</a>
+                            <button type="submit" class="btn-share btn"><img src="./imgs/share.svg"  class="fbshare" alt="" title="Share Meme">Share Meme</button>
+                            <a href="#" class="btn-download btn" onclick="downloadCanvas(this)" download="my-img.jpg"><img src="./imgs/download.svg" alt="" title="Download Meme"> Download Meme</a>
                         </form>
-                        <button class="btn btn-save">Save Meme</button>
+                        <button class="btn btn-save" onclick="onSaveMeme()" title="Save Meme">Save</button>
                     </div>
                 </div>
             </div>

@@ -184,6 +184,7 @@ function changeContainers(page) {
             elContainer.classList.add('hide');
         }
         if (elContainer.classList.contains('gallery-container')) onGalleryClicked();
+        if (elContainer.classList.contains('memes-container')) renderSavedMemes();
     });
 }
 
@@ -293,6 +294,7 @@ function addDragAndDrop() {
     });
 }
 
+// Save meme
 function onSaveMeme() {
     const memeImg = gCanvas.toDataURL()
     saveMeme(memeImg);
@@ -300,4 +302,37 @@ function onSaveMeme() {
     setTimeout(setTimeout(function() {
         document.querySelector('.btn-save').classList.remove('saved');
     }, 3000))
+}
+
+// Remove button
+function onRemoveMeme(memeId) {
+    removeMeme(memeId);
+    setSavedMemes();
+    renderSavedMemes();
+}
+
+// Edit Button
+function onEditMeme(memeId) {
+    setMemeId(memeId);
+    changeContainers('gallery-container');
+    showMemeEditor();
+    resizeCanvas();
+    drawCanvas();
+}
+
+// Render saved memes list
+function renderSavedMemes() {
+    const elSavedMemes = document.querySelector('.memes-container .saved-memes-imgs');
+    const memes = getSavedMemes();
+    var strHTML = memes.reduce(function(str, meme) {
+        return str + `<div class="meme-img">
+        <img src="${meme.memeImg}" alt="">
+        <div class="btns-container">
+        <button class="btn btn-delete" onclick="onRemoveMeme('${meme.id}')">Delete Meme</button>
+        <button class="btn btn-edit" onclick="onEditMeme('${meme.id}')">Edit Meme</button>
+        </div>
+        </div>
+        `
+    }, '');
+    elSavedMemes.innerHTML = strHTML
 }

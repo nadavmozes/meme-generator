@@ -110,6 +110,7 @@ function createMeme(canvasSize = 500, selectedImgId = 1) {
     }
     gMeme = meme;
     _createLine();
+    drawCanvas();
 }
 
 function _createLine() {

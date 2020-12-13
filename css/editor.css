@@ -32,6 +32,21 @@ canvas {
 
 /* tools-container */
 
+
+/* a.strokeclr {
+    font-size: 1rem;
+    color: black;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+a.fillclr {
+    font-size: 1rem;
+    color: black;
+    font-weight: 900;
+    cursor: pointer;
+} */
+
 .meme-editor-container .tools-container {
     flex-grow: 1;
     height: 90%;

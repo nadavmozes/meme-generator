@@ -88,6 +88,7 @@ function getFocusedLine() {
 
 
 function addTxt(txt) {
+    if (gMeme.lines.length === 0) _createLine();
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
     drawCanvas();
 }
